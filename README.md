@@ -23,3 +23,20 @@ k6 run PetStoreDemo.js
 ```
 
 3. Review the output and check the results for request success rates and thresholds.
+
+## Logs Used in `PetStoreDemo.js`
+
+The script uses `console.log` and `console.error` statements to capture response details and execution flow:
+
+- `console.log('Response status: ' + response.status)` logs the HTTP status code.
+- `console.log('Response body: ' + response.body)` logs the full response body.
+- `console.log('Body Length : ' + response.body.length)` logs the response payload size.
+- `console.log('Response Time : ' + response.timings.duration)` logs the request duration.
+- `console.log('Response headers: ' + JSON.stringify(response.headers))` logs all response headers.
+- `console.log('Response cookies: ' + JSON.stringify(response.cookies))` logs response cookies.
+- `console.log('Response timings: ' + JSON.stringify(response.timings))` logs detailed timing metrics.
+- Additional logs extract header fields such as `Content-Type`, `Content-Length`, `Content-Encoding`, `Content-Language`, `Content-Location`, `Content-Disposition`, `Content-Range`, `Content-Security-Policy`, and `X-Content-Type-Options`.
+- `console.error('Request failed with status: ' + response.status)` logs an error when the response status is not 200.
+- `check(response, { 'is status 200': (r) => r.status === 200 })` records pass/fail validation results in K6 summary output.
+
+These logs are used during test execution to debug issues, verify response payloads, and confirm successful API responses.
